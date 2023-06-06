@@ -1,7 +1,7 @@
 <template lang="">
     <div class="w-full flex justify-center">
         <div class="container flex justify-center ">
-            <div class="w-full border-[1px] p-4 sm:p-12 md:p-20 rounded-md my-12 max-w-2xl">
+            <div class="w-full border-[1px] p-4 sm:p-12 lg:p-20 rounded-md my-12 max-w-2xl">
                 <div class="w-full flex flex-col items-center">
                     <LogoFazz class="mb-3"/>
                     <p class="text-2xl font-semibold mb-2">Selamat Datang</p>

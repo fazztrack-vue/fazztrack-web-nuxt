@@ -100,7 +100,7 @@
                 class="w-full relative cursor-pointer">
                 <div
                   v-if="isLogin"
-                  class="flex gap-1 absolute top-1 z-[11] right-2 md:right-3 xl:right-8">
+                  class="flex gap-1 absolute top-1 z-[11] right-2 lg:right-3 xl:right-8">
                   <button
                     class="bg-[#1cb314] w-8 h-8 rounded-full flex justify-center items-center"
                     @click="showModal(item.id)">
@@ -183,6 +183,7 @@
       Loading,
       LogoText,
     },
+    middleware:'authenticated',
     data(): Data {
       return {
         card: [],
@@ -235,8 +236,6 @@
       showModal(param:number) {
         this.id = param
         this.modalDeleteStatus = !this.modalDeleteStatus;
-        console.log(this.modalDeleteStatus);
-        
       },
       handleDelete(id: number) {
         Swal.fire({

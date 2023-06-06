@@ -11,7 +11,7 @@
         <section class="w-full px-5 flex flex-wrap justify-center">
           <div class="w-[330px] ml-7 mb-8">
             <TitleHire title="Our Talents" />
-            <p class="text-base md:text-xl text-[#797e86]">
+            <p class="text-base lg:text-xl text-[#797e86]">
               Our talents are diverse across many roles and we speak the latest
               technologies & tools
             </p>
@@ -19,7 +19,7 @@
           <div
             v-for="(_item, index) in tools"
             :key="index"
-            class="w-[330px] bg-[#fef3ec] rounded-md p-6 md:ml-7 mb-8">
+            class="w-[330px] bg-[#fef3ec] rounded-md p-6 lg:ml-7 mb-8">
             <p class="title font-semibold text-[16px]">{{ _item.title }}</p>
             <div class="flex flex-wrap justify-between mt-8">
               <img
@@ -36,7 +36,7 @@
           <div class="w-full flex justify-center mb-10">
             <TitleHire title="Hiring Option" />
           </div>
-          <section class="flex flex-col md:flex-row justify-between gap-3 rounded-lg">
+          <section class="flex flex-col lg:flex-row justify-between gap-3 rounded-lg">
             <CardHireOption
               title="Hire Directly"
               desc="Hire our graduates without hiring fees. Contract directly between company and talent" />
@@ -52,15 +52,15 @@
       </section>
       <Companies title="Companies Trust Us" />
       <section class="w-full flex justify-center my-20">
-        <section class="container-class px-5 flex md:flex-row flex-col">
-          <div class="md:w-[40%] w-full mb-8 md:m-0">
+        <section class="container-class px-5 flex lg:flex-row flex-col">
+          <div class="lg:w-[40%] w-full mb-8 lg:m-0">
             <img
               src="https://www.fazztrack.com/hire/_nuxt/img/talent-quality-control-h.074589f.png"
               alt="" />
           </div>
-          <div class="md:w-[60%] w-full">
+          <div class="lg:w-[60%] w-full">
             <TitleHire title="Talent Quality Control" />
-            <p class="text-[#494c51] text-base md:text-xl mb-4 mt-5 md:mt-0">
+            <p class="text-[#494c51] text-base lg:text-xl mb-4 mt-5 lg:mt-0">
               To provide quality talent, previously we carried out a series of
               processes until we felt that they were ready to enter the industry.
             </p>

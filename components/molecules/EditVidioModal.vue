@@ -7,8 +7,9 @@
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     <div class="fixed inset-0 z-10 overflow-y-auto">
-      <div
-        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 mt-20">
+      <form
+        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 mt-20"
+        @submit.prevent="handleEdit">
         <div v-if="detailVidio.isLoading">
           <LoadingComponent />
         </div>
@@ -16,14 +17,13 @@
           {{detailVidio.errMessage}}
           <button class="btn btn-error btn-circle ml-5" @click="closeModal"><i class="fa-solid fa-xmark fa-2xl"></i></button>
         </div>
-        <div
-          v-else
-          class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div v-else class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div class="w-full">
               <div class="my-5">
                 <p class="text-center font-semibold text-xl">Edit Vidio</p>
               </div>
+              <!-- {{detailVidio.data.data.id}} -->
               <div class="w-full mb-4">
                 <InputComponent
                   :default-value="vidio.title"
@@ -31,7 +31,7 @@
                   label="Judul Vidio"
                   name="title"
                   placeholder="Masukan judul vidio..."
-                  @on-change="handldeInput()" />
+                  @on-change="handldeInput" />
               </div>
               <div class="w-full mb-4">
                 <InputComponent
@@ -82,9 +82,8 @@
           </div>
           <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
             <button
-              type="button"
-              class="inline-flex w-full justify-center rounded-md bg-success px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-succes/70 sm:ml-3 sm:w-auto"
-              @click="handleEdit">
+              type="submit"
+              class="inline-flex w-full justify-center rounded-md bg-success px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-succes/70 sm:ml-3 sm:w-auto">
               Save Edit
             </button>
             <button
@@ -95,7 +94,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -158,6 +157,7 @@ export default defineComponent({
       this.$emit("on-click", "");
     },
     handldeInput(data: any) {
+      console.log(data);
       if (data.name === "title") {
         this.vidio.title = data.value;
       } else if (data.name === "description") {
@@ -173,7 +173,7 @@ export default defineComponent({
       }
     },
     handleGetById() {
-      this.fetchDetail(this.idVidio).then((res: any) => {
+      this.fetchDetail(this.idVidio).then((res) => {
         this.vidio = res.data;
         
       })

@@ -43,7 +43,6 @@
                 type: String,
                 required: true
             },
-            // eslint-disable-next-line vue/require-default-prop
             defaultValue: {
                 type: String,
                 required: false,

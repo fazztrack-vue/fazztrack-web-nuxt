@@ -1,6 +1,7 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { Commit } from 'vuex'
 import { IVidioState } from './interface';
+
 
 
 const token = localStorage.getItem('token')
@@ -13,7 +14,7 @@ const actions = {
                 headers: {
                     Authorization: token
                 }
-            }).then((res) => {
+            }).then((res: AxiosResponse) => {
                 resolve(res)
                 const payload = {
                     data: res.data
@@ -39,10 +40,10 @@ const actions = {
                         Authorization: token
                     }
                 })
-                .then((res) => {
+                .then((res: AxiosResponse) => {
                     resolve(res.data)
                     const payload = {
-                        data: res.data
+                        data: res.data.data
                     }
                     commit('GET_DETAIL_VIDIO_FULFILLED', payload)
                 })
@@ -65,7 +66,7 @@ const actions = {
                         Authorization: token
                     }
                 })
-                .then((res) => {
+                .then((res: AxiosResponse) => {
                     resolve(res.data)
 
                 })
@@ -84,7 +85,7 @@ const actions = {
                         Authorization: token
                     }
                 })
-                .then((res) => {
+                .then((res: AxiosResponse) => {
                     resolve(res.data)
 
                 })
@@ -103,7 +104,7 @@ const actions = {
                         Authorization: token
                     }
                 })
-                .then((res) => {
+                .then((res: AxiosResponse) => {
                     resolve(res.data)
 
                 })

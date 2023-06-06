@@ -1,18 +1,18 @@
 <template lang="">
-    <section class="w-full py-24 px-5 flex md:justify-between md:items-center flex-col-reverse justify-center md:flex-row">
-        <main class="text-center md:text-start">
+    <section class="w-full py-24 px-5 flex lg:justify-between lg:items-center flex-col-reverse justify-center lg:flex-row">
+        <main class="text-center lg:text-start">
           <div>
             <div :class="'flex' + ' ' + reverseContent">
-              <p class="md:text-[48px] text-[32px] font-bold title text-primary-orange">
+              <p class="lg:text-[48px] text-[32px] font-bold title text-primary-orange">
                 {{conten}}
               </p>
-              <p class="md:text-[48px] text-[32px] font-bold title">{{secondConten}}</p>
+              <p class="lg:text-[48px] text-[32px] font-bold title">{{secondConten}}</p>
             </div>
-            <p class="md:text-[20px] text-[16px] text-[#797e86] mt-2">
+            <p class="lg:text-[20px] text-[16px] text-[#797e86] mt-2">
               {{desc}}
             </p>
           </div>
-          <div class="flex justify-center md:justify-start mt-6">
+          <div class="flex justify-center lg:justify-start mt-6">
             <BtnPrimary :title="btnTitle" />
           </div>
         </main>

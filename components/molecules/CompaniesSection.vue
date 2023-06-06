@@ -3,14 +3,14 @@
     class="w-full bg-[#f0f4f9] flex flex-col items-center relative overflow-x-hidden py-14">
     <div class="mb-5 flex flex-col items-center px-5">
       <TitleHire :title="title"/>
-      <p class="md:text-[20px] text-base text-[#797e86] text-center">{{ desc }}</p>
+      <p class="lg:text-[20px] text-base text-[#797e86] text-center">{{ desc }}</p>
     </div>
-    <section class="container-class flex flex-wrap px-5 z-10 mt-5">
+    <section class="container-class flex gap-1 md:gap-0 flex-wrap px-5 z-10 mt-5">
       <div v-for="(item, index) in companyHire" :key="index">
         <img
           :src="item.url"
           :alt="item.alt"
-          class="w-[113px] lg:w-[126px] md:ml-2 md:mt-2" />
+          class="w-[113px] lg:w-[126px] lg:ml-2 lg:mt-2" />
       </div>
       <div class="lg:w-[136px] w-[113px] flex justify-center items-center">
         <p class="title font-bold text-2xl">660+</p>

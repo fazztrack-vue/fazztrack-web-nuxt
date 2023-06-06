@@ -11,14 +11,14 @@
         img-content="https://www.fazztrack.com/_nuxt/img/about-page-hero.3a699a8.png"
         btn-title="Daftar sekarang"
       />
-      <section class="w-full px-5 flex flex-col md:flex-row items-center mb-16">
-        <div class="md:w-[40%] md:ml-7 flex flex-col justify-start">
+      <section class="w-full px-5 flex flex-col lg:flex-row items-center mb-16">
+        <div class="lg:w-[40%] lg:ml-7 flex flex-col justify-start">
           <TitleHire title="The New Career Hacks" />
-          <p class="text-base md:text-xl text-[#797e86]">
+          <p class="text-base lg:text-xl text-[#797e86]">
             Di Fazztrack kami percaya ada cara yang lebih baik untuk sukses:
           </p>
         </div>
-        <div class="md:w-[60%]">
+        <div class="lg:w-[60%]">
           <div class="flex items-start mt-5">
             <i
               class="fa-solid fa-check text-primary-orange fa-lg mt-3 mr-5"
@@ -57,11 +57,11 @@
           <TitleHire title="Hubungi Fazztrack" />
         </div>
         <div
-          class="md:w-[80%] w-full flex flex-col md:flex-row justify-center items-center"
+          class="lg:w-[80%] w-full flex flex-col lg:flex-row justify-center items-center"
         >
-          <div class="md:mr-10 w-full flex justify-center md:justify-end">
+          <div class="lg:mr-10 w-full flex justify-center lg:justify-end">
             <iframe
-              class="w-full h-[254px] md:w-[254px] md:right-5"
+              class="w-full h-[254px] lg:w-[254px] lg:right-5"
               frameborder="0"
               scrolling="no"
               marginheight="0"
@@ -70,25 +70,25 @@
             >
             </iframe>
           </div>
-          <div class="flex flex-col justify-between h-full mt-10 md:m-0">
-            <h2 class="text-base md:text-xl font-semibold text-primary-orange">
+          <div class="flex flex-col justify-between h-full mt-10 lg:m-0">
+            <h2 class="text-base lg:text-xl font-semibold text-primary-orange">
               Fazztrack Head Office
             </h2>
-            <p class="text-[#494c51] text-base md:text-xll mb-4">
+            <p class="text-[#494c51] text-base lg:text-xll mb-4">
               CIBIS Park, Jl. TB Simatupang No.2, RT.13/RW.5, Cilandak Tim.,
               Kec. Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota
               Jakarta 12560
             </p>
-            <p class="text-[#494c51] text-base md:text-xl mb-4">
+            <p class="text-[#494c51] text-base lg:text-xl mb-4">
               Senin - Jumat (08.00 - 18.00)
             </p>
             <div>
               <h2
-                class="text-base md:text-xl font-semibold text-primary-orange"
+                class="text-base lg:text-xl font-semibold text-primary-orange"
               >
                 Kontak Kami
               </h2>
-              <p class="text-[#494c51] text-base md:text-xl">+6282261564148</p>
+              <p class="text-[#494c51] text-base lg:text-xl">+6282261564148</p>
             </div>
           </div>
         </div>

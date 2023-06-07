@@ -146,7 +146,7 @@
   import '@/style/global.css'
 
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("auth._token.local");
 
   interface IOptions {
     id: number;
@@ -183,7 +183,7 @@
       Loading,
       LogoText,
     },
-    middleware:'authenticated',
+    layout: 'NavFoot',
     data(): Data {
       return {
         card: [],

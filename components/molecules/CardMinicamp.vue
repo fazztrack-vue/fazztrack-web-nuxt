@@ -40,7 +40,7 @@
   import Modal from '../../components/molecules/EditMinicamp.vue'
   import IDataMinicamp from '~/interface/IMinicamp'
   
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('auth._token.local')
 
   export default {
     components:{

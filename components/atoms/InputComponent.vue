@@ -26,6 +26,7 @@
     import {defineComponent} from 'vue';
 
     export default defineComponent({
+        name: 'InputModel',
         props: {
             label: {
                 type: String,
@@ -44,9 +45,9 @@
                 required: true
             },
             defaultValue: {
-                type: String,
+                type:  String,
                 required: false,
-                defult: ""
+                default: ""
             }
 
         },
@@ -57,7 +58,7 @@
         },
         computed:{
             onInput:{
-                get():any{
+                get(){
                     return this.inputValue
                 },
                 set(val: string){

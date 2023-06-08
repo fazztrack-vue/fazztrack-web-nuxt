@@ -12,16 +12,6 @@ const actions = {
                 })
         })
     },
-    login(_contex: any, body: IAuth) {
-        return new Promise((resolve, reject) => {
-            axios.post(`https://fazz-track-sample-api.vercel.app/login`, body)
-                .then((res: AxiosResponse) => {
-                    resolve(res)
-                }).catch((err) => {
-                    reject(err)
-                })
-        })
-    }
 }
 
 

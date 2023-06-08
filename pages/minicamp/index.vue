@@ -42,7 +42,7 @@
   import IDataMinicamp from '~/interface/IMinicamp';
   import ToastSuccess from '~/components/atoms/ToastSuccess.vue';
  
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('auth._token.local')
   
   interface IOptions {
     id : number
@@ -67,6 +67,7 @@
       SkeletonMinicamp
     },
     layout: 'NavFoot',
+    auth:false,
     data() : Data {
         return{
           options:[

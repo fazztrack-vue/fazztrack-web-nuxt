@@ -37,12 +37,42 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://fazz-track-sample-api.vercel.app/',
+  },
+  router: {
+    middleware: ['auth']
+  },
+
+  auth: {
+    watchLoggedIn: true,
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+          type: 'Bearer',
+          global: true,
+        },
+        user: {
+          property: 'data',
+        },
+        endpoints: {
+          login: { url: '/login', method: 'post' },
+          user: { url: '/profile', method: 'get' }
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

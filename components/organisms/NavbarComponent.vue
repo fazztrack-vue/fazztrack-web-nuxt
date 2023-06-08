@@ -277,7 +277,7 @@ import IUser from "~/interface/IUser";
 
 // addIcons(FaAlignJustify)
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("auth._token.local");
 
 interface Data {
   isOpenNav1: boolean;
@@ -369,8 +369,7 @@ export default {
       this.isAvatarDropdown = !this.isAvatarDropdown;
     },
     handleLogout() {
-      localStorage.removeItem("token");
-      window.location.reload();
+      this.$auth.logout()
       this.isLogin = false;
     },
     moveRoute(path: string) {

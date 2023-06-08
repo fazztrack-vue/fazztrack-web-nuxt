@@ -136,6 +136,7 @@ export default defineComponent({
     HireNow,
     BannerSection,
   },
+  layout: 'NavFoot',
   data(): Data {
     return {
       tools: [

@@ -89,7 +89,7 @@
             BtnPrimary,
             LogoFazz,
         },
-        middleware:"authenticated",
+        layout: 'NavFoot',
         data(): Data {
             return {
                 form: {

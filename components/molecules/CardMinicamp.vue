@@ -41,7 +41,7 @@
   import IDataMinicamp from '~/interface/IMinicamp'
   import currency from '~/helper/currency'
   
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('auth._token.local')
 
   export default {
     components:{

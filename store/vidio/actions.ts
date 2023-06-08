@@ -4,7 +4,7 @@ import { IVidioState } from './interface';
 
 
 
-const token = localStorage.getItem('token')
+const token = localStorage.getItem('auth._token.local')
 
 const actions = {
     getListVidios({ commit }: { commit: Commit }) {

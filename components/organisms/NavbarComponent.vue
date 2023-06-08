@@ -199,7 +199,7 @@
             <img class="w-6" src="../../assets/cart.svg" alt="cart" />
           </section>
           <section
-            v-if="isLogin"
+            v-if="$auth.loggedIn"
             class="dropdown-profile relative"
             @click="showDropdownProfile">
             <section>

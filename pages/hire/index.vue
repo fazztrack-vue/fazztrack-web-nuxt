@@ -119,6 +119,7 @@
       BannerSection,
     },
     layout: 'NavFoot',
+    auth:false,
     data(): Data {
       return {
         tools: [

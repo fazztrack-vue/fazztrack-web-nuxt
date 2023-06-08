@@ -17,7 +17,7 @@
             <div class="flex items-center justify-between">
               <h2 class="text-xl font-bold">Riwayat Pendidikan</h2>
               <div class="flex items-center gap-1 cursor-pointer">
-                <v-icon name="fa-regular-edit" fill="#ef6807" />
+                <i class="fa-regular fa-pen-to-square" style="color:#ef6807;"></i>
                 <p class="text-primary-orange text-sm font-bold">Edit</p>
               </div>
             </div>
@@ -37,7 +37,7 @@
             <div class="flex items-center justify-between mb-2">
               <h2 class="text-xl font-bold">Kemampuan</h2>
               <div class="flex items-center gap-1 cursor-pointer">
-                <v-icon name="fa-regular-edit" fill="#ef6807" />
+                <i class="fa-regular fa-pen-to-square" style="color:#ef6807;"></i>
                 <p class="text-primary-orange text-sm font-bold">Edit</p>
               </div>
             </div>
@@ -58,7 +58,7 @@
             <div class="flex items-center justify-between mb-2">
               <h2 class="text-xl font-bold">Prestasi</h2>
               <div class="flex items-center gap-1 cursor-pointer">
-                <v-icon name="fa-regular-edit" fill="#ef6807" />
+                <i class="fa-regular fa-pen-to-square" style="color:#ef6807;"></i>
                 <p class="text-primary-orange text-sm font-bold">Edit</p>
               </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="flex items-center justify-between mb-2">
               <h2 class="text-xl font-bold">Organisasi</h2>
               <div class="flex items-center gap-1 cursor-pointer">
-                <v-icon name="fa-regular-edit" fill="#ef6807" />
+                <i class="fa-regular fa-pen-to-square" style="color:#ef6807;"></i>
                 <p class="text-primary-orange text-sm font-bold">Edit</p>
               </div>
             </div>
@@ -98,7 +98,7 @@
             <div class="flex items-center justify-between mb-2">
               <h2 class="text-xl font-bold">Pengalaman Kerja</h2>
               <div class="flex items-center gap-1 cursor-pointer">
-                <v-icon name="fa-regular-edit" fill="#ef6807" />
+                <i class="fa-regular fa-pen-to-square" style="color:#ef6807;"></i>
                 <p class="text-primary-orange text-sm font-bold">Edit</p>
               </div>
             </div>

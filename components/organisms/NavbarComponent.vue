@@ -8,9 +8,11 @@
           ? 'container-profile container bg-white flex items-center'
           : 'container-class bg-white flex items-center'
       ">
-      <a href="/" class="w-[20%]">
-        <Logo />
-      </a>
+      <div class="w-[20%]">
+        <div class="w-fit cursor-pointer" @click="moveRoute('/minicamp')">
+            <Logo />
+          </div>
+      </div>
       <main class="hidden lg:flex flex-1 justify-between items-center">
         <section class="flex justify-between items-center font-bold gap-5">
           <div
@@ -199,7 +201,7 @@
             <img class="w-6" src="../../assets/cart.svg" alt="cart" />
           </section>
           <section
-            v-if="isLogin"
+            v-if="$auth.loggedIn"
             class="dropdown-profile relative"
             @click="showDropdownProfile">
             <section>
@@ -258,9 +260,6 @@
           </section>
         </section>
       </main>
-      <!-- <div class="lg:hidden ml-auto">
-        <v-icon name="fa-align-justify" scale="2"/>
-      </div> -->
     </nav>
   </section>
 </template>
@@ -268,23 +267,18 @@
 <script lang="ts">
 import '~/style/global.css'
 import { mapGetters, mapActions } from "vuex";
-// import { OhVueIcon, addIcons } from 'oh-vue-icons'
-// import {FaAlignJustify} from 'oh-vue-icons/icons'
 import Logo from "../atoms/LogoFazz.vue";
 import ArrowUp from "../atoms/ArrowUp.vue";
 import ArrowDown from "../atoms/ArrowDown.vue";
-import IUser from "~/interface/IUser";
+import IUser from "~/interfaces/IUser";
 
-// addIcons(FaAlignJustify)
-
-const token = localStorage.getItem("auth._token.local");
+const token : any = localStorage.getItem("auth._token.local");
 
 interface Data {
   isOpenNav1: boolean;
   isOpenNav2: boolean;
   isOpenNav3: boolean;
   isAvatarDropdown: boolean;
-  isLogin: string | boolean;
   dataUser: IUser;
   nameUser: string;
 }
@@ -295,7 +289,6 @@ export default {
     Logo,
     ArrowDown,
     ArrowUp,
-    // "v-icon": OhVueIcon
   },
   props: {
     widhtContain: {
@@ -310,7 +303,6 @@ export default {
       isOpenNav2: false,
       isOpenNav3: false,
       isAvatarDropdown: false,
-      isLogin: token || false,
       dataUser: {
         created_at: "",
         email: "",
@@ -325,12 +317,9 @@ export default {
     ...mapGetters({
       dataProfile: "user/getDetail",
     }),
-    // setIslogin(){
-    //   this.isLogin = !this.isLogin;
-    // },
   },
   mounted() {
-    if(token){
+    if(token !== 'false'){
       this.getDataUser(token);
     }
   },
@@ -368,9 +357,9 @@ export default {
       }
       this.isAvatarDropdown = !this.isAvatarDropdown;
     },
-    handleLogout() {
-      this.$auth.logout()
-      this.isLogin = false;
+    async handleLogout() {
+      await this.$auth.logout()
+      window.location.reload()
     },
     moveRoute(path: string) {
       this.$router.push(path);

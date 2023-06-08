@@ -15,9 +15,7 @@
           <main class="grid grid-cols-3">
             <section class="bg-white border-[1px] border-[#dee1e5] p-10 flex flex-col items-center gap-2 cursor-pointer">
               <div class="bg-green-50 rounded-full p-5">
-                <!-- <client-only>
-                  <v-icon name="hi-solid-plus" fill="green" scale="4"/>
-                </client-only> -->
+                <i class="fa-solid fa-plus fa-2xl" style="color:green ;scale;: 2 "></i>
               </div>
               <h3 class="font-bold text-lg">Tambah Portofolio</h3>
               <p class="text-center text-slate-400 text-sm">Tambah dan deskripsikan portofolio untuk mendukung profil kamu</p>
@@ -29,18 +27,14 @@
   </div>
 </template>
 <script lang="ts">
-  // import { OhVueIcon, addIcons } from 'oh-vue-icons'
-  // import { HiSolidPlus } from "oh-vue-icons/icons";
   import SideBar from '~/components/molecules/SideBar.vue';
   import SideProfileGlobal from '~/components/molecules/SideProfileGlobal.vue';
 
-  // addIcons(HiSolidPlus)
-
   export default {
-      components: {
+    name: "PortofolioProfile",
+    components: {
         SideBar,
         SideProfileGlobal,
-        // "v-icon": OhVueIcon
     },
     layout: 'ProfileLayout',
     methods:{

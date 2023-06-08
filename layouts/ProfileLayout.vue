@@ -1,9 +1,7 @@
 <template>
   <div>
     <NavbarComponent widht-contain="profile" />
-    <div>
-      <Nuxt />
-    </div>
+    <Nuxt />
     <Contact />
     <FooterProfile />
   </div>

@@ -13,46 +13,42 @@
           <div class="bg-white border-[1px] border-[#dee1e5] p-5 text-[15px] flex flex-col gap-2">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus beatae minima laudantium fugit quod nemo sint velit aliquam sed ipsa perferendis dolore, ad quam quo, facere cum exercitationem dolorum eum.</p>
             <div class="flex items-center gap-3 break-all">
-              <v-icon name="md-email-outlined" />
+              <i class="fa-regular fa-envelope"></i>
               <p>useradmin@gmail.com</p>
             </div>
             <div class="flex items-center gap-3 break-all">
-              <v-icon name="hi-solid-phone" />
+              <i class="fa-solid fa-phone"></i>
               <p>08546538994.</p>
             </div>
             <div class="flex items-center gap-3 break-all">
-              <v-icon name="bi-gender-male" />
+              <i class="fa-solid fa-venus-mars"></i>
               <p>Laki- Laki</p>
             </div>
             <div class="flex items-center gap-3 break-all">
-              <v-icon name="ri-cake-2-line" />
+              <i class="fa-solid fa-cake-candles"></i>
               <p>20 Agustus 2000</p>
             </div>
             <div class="flex items-center gap-3 break-all">
-              <v-icon name="co-location-pin" />
+              <i class="fa-solid fa-location-dot"></i>
               <p>Jakarta, Monas</p>
             </div>
             <div class="flex items-center gap-3 break-all">
-              <v-icon name="md-volunteeractivism-outlined" />
+              <i class="fa-solid fa-heart"></i>
               <p>Football</p>
             </div>
             <div class="flex items-start gap-3 break-all">
-              <v-icon name="la-linkedin" />
+              <i class="fa-brands fa-linkedin"></i>
               <p class="">http://linkedin.com/in/user</p>
             </div>
           </div>
         </section>
 </template>
 <script lang="ts">
-  // import { OhVueIcon, addIcons } from 'oh-vue-icons'
-  // import { FaRegularEdit , MdEmailOutlined, HiSolidPhone, RiCake2Line, BiGenderMale, CoLocationPin, MdVolunteeractivismOutlined, LaLinkedin } from "oh-vue-icons/icons";
   import BtnPrimary from '../atoms/BtnPrimary.vue';
 
-  // addIcons(FaRegularEdit, MdEmailOutlined, HiSolidPhone, RiCake2Line, BiGenderMale, CoLocationPin, MdVolunteeractivismOutlined, LaLinkedin)
   export default {
     components: {
       BtnPrimary,
-      // "v-icon" : OhVueIcon
     }
   }
 </script>

@@ -13,7 +13,7 @@
       <NavbarSection :options="options" @on-selected="filterMinicamp" />
       <section>
         <Modal v-if="isModal" @on-confirm="handleConfirm" />
-        <div v-if="isLogin !== false && listMinicamp.isError === false"  class="container-class pt-10 mx-auto text-right">
+        <div v-if="$auth.loggedIn && listMinicamp.isError === false"  class="container-class pt-10 mx-auto text-right">
           <button class="border-2 rounded-md py-2 px-3 bg-primary-orange text-white tracking-wide border-primary-orange" @click="handleModal"><i class="fa-solid fa-circle-plus fa-2xl"></i></button>
         </div>
         <main class="container-class py-10 mx-auto grid grid-cols-3 gap-8 z-10 items-stretch">
@@ -39,10 +39,8 @@
   import NavbarSection from '~/components/molecules/NavbarSection.vue';
   import CardMinicamp from '~/components/molecules/CardMinicamp.vue';
   import SkeletonMinicamp from '~/components/atoms/SkeletonMinicamp.vue';
-  import IDataMinicamp from '~/interface/IMinicamp';
+  import IDataMinicamp from '~/interfaces/IMinicamp';
   import ToastSuccess from '~/components/atoms/ToastSuccess.vue';
- 
-  const token = localStorage.getItem('auth._token.local')
   
   interface IOptions {
     id : number
@@ -53,7 +51,6 @@
   interface Data {
     options : IOptions[]
     isModal : boolean
-    isLogin : string | boolean
     isAlert: boolean
   }
 
@@ -83,7 +80,6 @@
         ],
         // dataMinicamps : [] as IDataMinicamp[],
         isModal : false,
-        isLogin : token || false,
         isAlert : false
       }
     },

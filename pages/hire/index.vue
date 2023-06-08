@@ -23,8 +23,8 @@
             <p class="title font-semibold text-[16px]">{{ _item.title }}</p>
             <div class="flex flex-wrap justify-between mt-8">
               <img
-                v-for="(item, index) in _item.data"
-                :key="index"
+                v-for="(item, _index) in _item.data"
+                :key="_index"
                 :src="item.url"
                 :alt="item.alt" />
             </div>
@@ -119,6 +119,7 @@
       BannerSection,
     },
     layout: 'NavFoot',
+    auth:false,
     data(): Data {
       return {
         tools: [

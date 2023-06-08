@@ -81,6 +81,7 @@ interface Data {
 }
 
 export default defineComponent({
+  auth:false,
   components: {
     InputComponent,
     BtnPrimary,

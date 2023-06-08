@@ -100,7 +100,7 @@
   import Swal from 'sweetalert2';
   import InputModal from '../atoms/InputComponent.vue';
   import BtnPrimary from '../atoms/BtnPrimary.vue';
-  import IDataMinicamp from '~/interface/IMinicamp';
+  import IDataMinicamp from '~/interfaces/IMinicamp';
   
   interface Data {
     isReady : boolean

@@ -206,6 +206,9 @@
         listVidio: "vidio/getList",
       }),
     },
+    mounted() {
+      this.fetchData();
+    },
     methods: {
       ...mapActions({
         fetchData: "vidio/getListVidios",
@@ -257,9 +260,6 @@
           }
         });
       },
-    },
-    mounted() {
-      this.fetchData();
     },
   });
   </script>

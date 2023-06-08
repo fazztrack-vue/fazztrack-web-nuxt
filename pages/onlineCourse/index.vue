@@ -103,7 +103,7 @@
                   class="flex gap-1 absolute top-1 z-[11] right-2 lg:right-3 xl:right-8">
                   <button
                     class="bg-[#1cb314] w-8 h-8 rounded-full flex justify-center items-center"
-                    @click="showModal(item.id)">
+                    @click="moveEdit(item.id)">
                     <i class="fa-regular fa-pen-to-square fa-md"></i>
                   </button>
                   <!-- <DeletModal v-if="modalStatus" :id="id" @on-delete="handleDelete"/> -->
@@ -234,7 +234,10 @@
         }
       },
       moveToAddVidio() {
-        this.$router.push("/addVidio");
+        this.$router.push("/onlineCourse/addVidio");
+      },
+      moveEdit(id:string){
+        this.$router.push(`/onlineCourse/${id}/edit`);
       },
       showModal(param:number) {
         this.id = param

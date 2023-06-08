@@ -103,7 +103,7 @@
         },
         methods: {
             ...mapActions({
-                registerAction:'auth/register'
+                registerAction:'register/register'
             }),
             handleInput(data : any) {
                 if (data.name === "email") {

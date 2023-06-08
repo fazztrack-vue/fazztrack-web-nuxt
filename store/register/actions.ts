@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { IAuth } from '~/interfaces/IAuth'
-
+import { IAuth } from '@/interfaces/IAuth'
 const actions = {
     register(_contex: any, body: IAuth) {
         return new Promise((resolve, reject) => {

@@ -97,6 +97,7 @@
 
 <script lang="ts">
   import { mapGetters, mapActions } from 'vuex';
+  import Swal from 'sweetalert2';
   import InputModal from '../atoms/InputComponent.vue';
   import BtnPrimary from '../atoms/BtnPrimary.vue';
   import IDataMinicamp from '~/interface/IMinicamp';
@@ -204,7 +205,7 @@
           this.dataMinicamp.location === '' ||
           typeof this.dataMinicamp.isWork !== 'boolean'  
           ){
-            alert('Please fill all the input')
+            Swal.fire('Please fill all the input', '', 'info')    
           }
           this.$emit('on-confirm', this.dataMinicamp)
         },

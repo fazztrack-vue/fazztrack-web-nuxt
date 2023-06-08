@@ -97,7 +97,7 @@
                     <p
                       rel="noopener noreferrer"
                       class="flex items-center font-bold whitespace-nowrap py-[4px]"
-                      @click="moveRoute('/online-course')">
+                      @click="moveRoute('/onlineCourse')">
                       Lihat Semua
                       <svg
                         data-v-cf1ec82f=""

@@ -33,6 +33,7 @@
   import { mapGetters, mapActions } from 'vuex';
   import '~/style/global.css'
 
+  import Swal from 'sweetalert2';
   import LogoText from '~/components/atoms/LogoText.vue';
   import Modal from '~/components/molecules/AddMinicamp.vue'
   import NavbarSection from '~/components/molecules/NavbarSection.vue';
@@ -103,7 +104,7 @@
             this.fetchDataMinicamp()
           }, 2000);
         }).catch((error : any) => {
-          alert(error.message)
+          Swal.fire('Delete Failed!', error.message, 'error')    
         })
       },
       handleModal(): void{
@@ -118,7 +119,7 @@
         }
       },
       filterMinicamp(_data : any){
-        alert('API tidak men-support filter')
+        Swal.fire('API tidak men-support filter', '', 'info')    
         // if(data.value === 'Disalurkan'){
         //   this.dataMinicamps = this.listDisalurkan
         // }else if(data.value === 'Tidak Disalurkan'){

@@ -84,6 +84,7 @@
   </div>
 </template>
 <script lang="ts">
+  import Swal from 'sweetalert2';
   import InputModel from '../atoms/InputComponent.vue';
   import BtnPrimary from '../atoms/BtnPrimary.vue';
   
@@ -188,7 +189,7 @@
           this.dataMinicamp.location === '' ||
           typeof this.dataMinicamp.isWork !== 'boolean'  
           ){
-            alert('Please fill all the input')
+            Swal.fire('Please fill all the input', '', 'info')
           }
           this.$emit('on-confirm', this.dataMinicamp)
         }

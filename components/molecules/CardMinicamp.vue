@@ -23,7 +23,7 @@
           <div class="bg-[#dee1e5] h-[0.1px] my-4"></div>
           <div class="flex items-center justify-between">
             <p>Harga:</p>
-            <p class="font-semibold text-[17px]">Rp {{price}}</p>
+            <p class="font-semibold text-[17px]">{{convertCurrency(price)}}</p>
           </div>
           <div class="bg-[#dee1e5] h-[0.1px] my-4"></div>
           <div class="flex justify-center items-center gap-2 cursor-pointer">
@@ -39,6 +39,7 @@
   import { mapActions } from 'vuex'
   import Modal from '../../components/molecules/EditMinicamp.vue'
   import IDataMinicamp from '~/interface/IMinicamp'
+  import currency from '~/helper/currency'
   
   const token = localStorage.getItem('token')
 
@@ -65,6 +66,9 @@
         deleteAction : "minicamp/deleteDataMinicamp",
         editAction : "minicamp/updateDataMinicamp"
       }),
+      convertCurrency(val:number){
+        return currency(val)
+      },
       deleteCourse(id : number){
           this.deleteAction(id).then((_resolve : any) => {
             Swal.fire('Delete Success!', '', 'success')
@@ -72,7 +76,7 @@
               window.location.reload()
             }, 2000);
           }).catch((error : any) => {
-            alert(error.message)
+            Swal.fire('Delete Failed!', error.message, 'error')    
           }) 
       },
       handleModalEdit(id : number){
@@ -86,7 +90,7 @@
             window.location.reload()
           }, 1500);
         }).catch((err : any) => {
-          alert(err.message)
+          Swal.fire('Delete Failed!', err.message, 'error')    
         })
       },
       handleConfirm(val : any){

@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import { Commit } from 'vuex'
+import type { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { IVidioState } from './interface';
 
 
@@ -7,14 +8,10 @@ import { IVidioState } from './interface';
 const token = localStorage.getItem('auth._token.local')
 
 const actions = {
-    getListVidios({ commit }: { commit: Commit }) {
+    getListVidios({ commit }: { commit: Commit }, { $axios }: { $axios: NuxtAxiosInstance }) {
         commit('GET_LIST_VIDIOS_PENDING')
         return new Promise((resolve, reject) => {
-            axios.get(`https://fazz-track-sample-api.vercel.app/video`, {
-                headers: {
-                    Authorization: token
-                }
-            }).then((res: AxiosResponse) => {
+            $axios.get(`/video`).then((res: AxiosResponse) => {
                 resolve(res)
                 commit('GET_LIST_VIDIOS_FULFILLED', res.data)
             }).catch((err: unknown) => {

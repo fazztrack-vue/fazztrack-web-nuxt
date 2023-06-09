@@ -96,7 +96,9 @@
 </template>
 
 <script lang="ts">
+  import { defineComponent } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+
   import Swal from 'sweetalert2';
   import InputModal from '../atoms/InputComponent.vue';
   import BtnPrimary from '../atoms/BtnPrimary.vue';
@@ -107,7 +109,7 @@
     dataMinicamp: IDataMinicamp
   }
 
-  export default {
+  export default defineComponent({
       components :{
         InputModal,
         BtnPrimary,
@@ -218,7 +220,7 @@
           getDetailMinicamp : "minicamp/getDetailMinicamp"
         })
       },
-  }
+  })
 </script>
 <style lang="">
   

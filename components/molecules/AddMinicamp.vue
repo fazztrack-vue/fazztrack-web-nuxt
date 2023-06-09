@@ -84,6 +84,8 @@
   </div>
 </template>
 <script lang="ts">
+  import { defineComponent } from 'vue';
+
   import Swal from 'sweetalert2';
   import InputModel from '../atoms/InputComponent.vue';
   import BtnPrimary from '../atoms/BtnPrimary.vue';
@@ -107,7 +109,7 @@
     dataMinicamp: IDataPostMinicamp
   }
 
-  export default {
+  export default defineComponent({
       components :{
         InputModel,
         BtnPrimary
@@ -194,8 +196,7 @@
           this.$emit('on-confirm', this.dataMinicamp)
         }
       }
-    }
-  
+    })
 </script>
 <style lang="">
   

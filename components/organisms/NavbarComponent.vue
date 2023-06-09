@@ -265,6 +265,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import '~/style/global.css'
 import { mapGetters, mapActions } from "vuex";
 import Logo from "../atoms/LogoFazz.vue";
@@ -283,7 +284,7 @@ interface Data {
   nameUser: string;
 }
 
-export default {
+export default defineComponent({
   name: "NavbarModel",
   components: {
     Logo,
@@ -370,7 +371,7 @@ export default {
       this.nameUser = this.dataUser.email.split("@")[0];
     },
   },
-};
+})
 </script>
 
 <style lang=""></style>

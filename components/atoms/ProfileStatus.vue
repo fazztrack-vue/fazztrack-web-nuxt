@@ -8,14 +8,16 @@
   </div>
 </template>
 <script lang="ts">
-  export default {
+  import { defineComponent } from 'vue';
+
+  export default defineComponent({
     props: {
       type: {
         type: String,
         required: true
       }
     }
-  }
+  })
 </script>
 <style>
   

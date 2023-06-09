@@ -9,13 +9,13 @@
   </div>
 </template>
 <script lang="ts">
-  import {PropType} from 'vue'
+  import {PropType, defineComponent} from 'vue'
   interface IOptions {
       id: number
       value: string
       active: boolean
   }
-  export default {
+  export default defineComponent({
     props:{
       options : {
         type: Array as PropType<IOptions[]>,
@@ -33,7 +33,7 @@
           this.$emit('on-selected', dataSelected)
       }
     }
-  }
+  })
 </script>
 <style>
 

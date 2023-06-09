@@ -27,10 +27,11 @@
   </div>
 </template>
 <script lang="ts">
+  import { defineComponent } from 'vue';
   import SideBar from '~/components/molecules/SideBar.vue';
   import SideProfileGlobal from '~/components/molecules/SideProfileGlobal.vue';
 
-  export default {
+  export default defineComponent({
     name: "PortofolioProfile",
     components: {
         SideBar,
@@ -42,7 +43,7 @@
         this.$router.push(path)
       }
     }
-  }
+  })
 </script>
 
 <style>

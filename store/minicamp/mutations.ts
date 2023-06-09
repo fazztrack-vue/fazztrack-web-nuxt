@@ -1,5 +1,5 @@
 import IStateMinicamp from "./inteface"
-import IDataMinicamp from "~/interface/IMinicamp"
+import IDataMinicamp from "~/interfaces/IMinicamp"
 
 export default {
   GET_MINICAMPS_PENDING(state: IStateMinicamp){

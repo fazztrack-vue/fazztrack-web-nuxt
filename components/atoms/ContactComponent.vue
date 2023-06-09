@@ -3,7 +3,9 @@
 </template>
 
 <script lang="ts">
-export default{
-  name: 'ContactFazztrack',
-}
+  import { defineComponent } from 'vue';
+
+  export default defineComponent({
+    name: 'ContactFazztrack',
+  })
 </script>

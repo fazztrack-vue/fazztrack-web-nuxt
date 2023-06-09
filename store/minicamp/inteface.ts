@@ -1,4 +1,4 @@
-import IDataMinicamp from '~/interface/IMinicamp';
+import IDataMinicamp from '~/interfaces/IMinicamp';
 
 interface IStateMinicamp {
   list:{

@@ -30,6 +30,7 @@
   </div>
 </template>
 <script lang="ts">
+  import {defineComponent} from 'vue'
   import { mapGetters, mapActions } from 'vuex';
   import '~/style/global.css'
 
@@ -54,7 +55,7 @@
     isAlert: boolean
   }
 
-  export default {
+  export default defineComponent({
     components:{
       LogoText,
       NavbarSection,
@@ -130,7 +131,7 @@
         insertDataMinicamp : "minicamp/insertDataMinicamp"
       })
     },
-  }
+  })
 </script>
 <style lang="">
   

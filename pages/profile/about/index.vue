@@ -121,12 +121,13 @@
   </div>
 </template>
 <script lang="ts">
+  import { defineComponent } from 'vue';
   import SideBar from '~/components/molecules/SideBar.vue';
   import BtnPrimary from '~/components/atoms/BtnPrimary.vue';
   import ProfileStatus from '~/components/atoms/ProfileStatus.vue';
   import SideProfileGlobal from '~/components/molecules/SideProfileGlobal.vue';
 
-  export default {
+  export default defineComponent({
     components: {
       BtnPrimary,
       ProfileStatus,
@@ -139,7 +140,7 @@
          this.$router.push(path)
       }
     }
-  }
+  })
 </script>
 
 <style>

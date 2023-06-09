@@ -30,11 +30,12 @@
       </section>
 </template>
 <script lang="ts">
+  import { defineComponent } from 'vue';
   import LogoText from '../atoms/LogoText.vue';
 
-export default {
-    components: { LogoText }
-}
+  export default defineComponent({
+      components: { LogoText }
+  })
 </script>
 <style>
   

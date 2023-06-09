@@ -1,5 +1,5 @@
 import IStateMinicamp from "./inteface"
-import IDataMinicamp from "~/interface/IMinicamp"
+import IDataMinicamp from "~/interfaces/IMinicamp"
 
 const state = () : IStateMinicamp => ({
   list:{

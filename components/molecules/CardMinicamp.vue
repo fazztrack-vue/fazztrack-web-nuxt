@@ -35,13 +35,14 @@
   </section>
 </template>
 <script lang="ts">
+  import { defineComponent } from 'vue';
   import Swal from 'sweetalert2'
   import { mapActions } from 'vuex'
   import Modal from '../../components/molecules/EditMinicamp.vue'
   import IDataMinicamp from '~/interfaces/IMinicamp'
   import currency from '~/helper/currency'
   
-  export default {
+  export default defineComponent({
     components:{
       Modal
     },
@@ -116,7 +117,7 @@
         })
       }
     },
-  }
+  })
 </script>
 <style lang="">
   

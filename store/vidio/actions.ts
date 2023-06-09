@@ -16,17 +16,11 @@ const actions = {
                 }
             }).then((res: AxiosResponse) => {
                 resolve(res)
-                const payload = {
-                    data: res.data
-                }
-                commit('GET_LIST_VIDIOS_FULFILLED', payload)
+                commit('GET_LIST_VIDIOS_FULFILLED', res.data)
             }).catch((err: unknown) => {
                 if (err instanceof Error) {
                     reject(err)
-                    const payload = {
-                        message: err.message
-                    }
-                    commit('GET_LIST_VIDIOS_REJECTED', payload)
+                    commit('GET_LIST_VIDIOS_REJECTED', err.message)
                 }
             })
         })
@@ -42,18 +36,12 @@ const actions = {
                 })
                 .then((res: AxiosResponse) => {
                     resolve(res.data)
-                    const payload = {
-                        data: res.data.data
-                    }
-                    commit('GET_DETAIL_VIDIO_FULFILLED', payload)
+                    commit('GET_DETAIL_VIDIO_FULFILLED', res.data.data)
                 })
                 .catch((err: unknown) => {
                     if (err instanceof Error) {
                         reject(err.message)
-                        const payload = {
-                            message: err.message
-                        }
-                        commit('GET_DETAIL_VIDIO_REJECTED', payload)
+                        commit('GET_DETAIL_VIDIO_REJECTED', err.message)
                     }
                 })
         })

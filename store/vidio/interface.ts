@@ -14,8 +14,3 @@ export interface IVidioState {
         errMessage: string
     }
 }
-
-export interface IPayload {
-    data: IVidio[],
-    message: string
-}

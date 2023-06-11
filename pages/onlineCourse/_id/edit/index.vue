@@ -18,7 +18,6 @@
             <LogoFazz />
           </div>
           <p class="text-xl font-semibold mb-2">Edit Data Vidio</p>
-          {{ idVidio }}
         </div>
         <div class="w-full">
           <div class="w-full mb-4">
@@ -33,6 +32,7 @@
           </div>
           <div class="w-full mb-4">
             <InputComponent
+              :default-value="form.description"
               type="text"
               label="deskripsi"
               name="description"
@@ -42,6 +42,7 @@
           </div>
           <div class="w-full mb-4">
             <InputComponent
+              :default-value="form.cover"
               type="text"
               label="URL Cover Vidio"
               name="cover"
@@ -51,6 +52,7 @@
           </div>
           <div class="w-full mb-4">
             <InputComponent
+              :default-value="`${form.rating}`"
               type="number"
               label="Ratting"
               name="ratting"
@@ -60,6 +62,7 @@
           </div>
           <div class="w-full mb-4">
             <InputComponent
+              :default-value="form.level"
               type="text"
               label="Level"
               name="level"
@@ -69,6 +72,7 @@
           </div>
           <div class="w-full mb-10">
             <InputComponent
+              :default-value="`${form.price}`"
               type="number"
               label="Harga"
               name="harga"
@@ -85,26 +89,24 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
+import Swal from "sweetalert2";
 import BtnPrimary from '~/components/atoms/BtnPrimary.vue'
 import LoadingComponent from '@/components/atoms/LoadingComponent.vue'
 import InputComponent from '@/components/atoms/InputComponent.vue'
+import LogoFazz from '~/components/atoms/LogoFazz.vue'
 
-interface ICard {
-  title: number | string
-  description: number | string
-  cover: number | string
-  rating: number | string
-  level: number | string
-  price: number | string
-}
 
 interface Input{
   name:string,
-  value:number | string
+  value:string
+}
+
+interface IForm {
+  [key: string]: string
 }
 
 interface Data {
-  form: ICard
+  form: IForm
   idVidio: number | string
 }
 
@@ -113,7 +115,9 @@ export default defineComponent({
     InputComponent,
     BtnPrimary,
     LoadingComponent,
+    LogoFazz
   },
+  layout: 'NavFoot',
   props: {
     id: {
       type: Number,
@@ -126,9 +130,9 @@ export default defineComponent({
         title: '',
         description: '',
         cover: '',
-        rating: 0,
+        rating: '',
         level: '',
-        price: 0,
+        price: '',
       },
       idVidio: this.$route.params.id,
     }
@@ -147,22 +151,10 @@ export default defineComponent({
       this.$emit('on-click', '')
     },
     handleInput(data: Input) {
-      if (data.name === 'title') {
-        this.form.title = data.value
-      } else if (data.name === 'description') {
-        this.form.description = data.value
-      } else if (data.name === 'cover') {
-        this.form.cover = data.value
-      } else if (data.name === 'rating') {
-        this.form.rating = data.value
-      } else if (data.name === 'level') {
-        this.form.level = data.value
-      } else {
-        this.form.price = data.value
-      }
+      this.form[data.name] = data.value
     },
     handleGetById() {
-      this.fetchDetail(this.idVidio).then((res) => {
+      this.fetchDetail({id:this.idVidio, $axios: this.$axios}).then((res) => {
         this.form = res.data
       })
     },
@@ -170,8 +162,9 @@ export default defineComponent({
       this.$emit('on-click', '')
     },
     handleEdit() {
-      this.editVidio({ id: this.idVidio, body: this.form }).then((res) => {
-        console.log(res)
+      this.editVidio({ id: this.idVidio, body: this.form, $axios: this.$axios }).then((_res) => {
+          Swal.fire("Edit Success!", "", "success");
+          this.$router.push('/onlineCourse')
       })
     },
   },

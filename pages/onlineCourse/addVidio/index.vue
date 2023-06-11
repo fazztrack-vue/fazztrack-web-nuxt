@@ -66,6 +66,7 @@
 <script lang='ts'>
     import {defineComponent} from 'vue';
     import {mapActions} from "vuex"
+    import Swal from 'sweetalert2';
     import InputComponent from '@/components/atoms/InputComponent.vue'
     import BtnPrimary from '~/components/atoms/BtnPrimary.vue';
     import LogoFazz from '~/components/atoms/LogoFazz.vue';
@@ -123,7 +124,8 @@
                 }                
             },
             handlePostVidio(){
-            this.postVidio(this.form).then((_res:any)=>{
+            this.postVidio({body:this.form,$axios: this.$axios}).then((_res:any)=>{
+                Swal.fire("Add Vidio Success!", "", "success");
                 this.$router.push('/onlineCourse') 
             })
             }

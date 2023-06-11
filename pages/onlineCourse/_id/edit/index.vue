@@ -23,7 +23,7 @@
         <div class="w-full">
           <div class="w-full mb-4">
             <InputComponent
-              :default-value="vidio.title"
+              :default-value="form.title"
               type="text"
               label="Judul Vidio"
               name="title"
@@ -90,16 +90,21 @@ import LoadingComponent from '@/components/atoms/LoadingComponent.vue'
 import InputComponent from '@/components/atoms/InputComponent.vue'
 
 interface ICard {
-  title: string
-  description: string
-  cover: string
-  rating: number
-  level: string
-  price: number
+  title: number | string
+  description: number | string
+  cover: number | string
+  rating: number | string
+  level: number | string
+  price: number | string
+}
+
+interface Input{
+  name:string,
+  value:number | string
 }
 
 interface Data {
-  vidio: ICard
+  form: ICard
   idVidio: number | string
 }
 
@@ -117,7 +122,7 @@ export default defineComponent({
   },
   data(): Data {
     return {
-      vidio: {
+      form: {
         title: '',
         description: '',
         cover: '',
@@ -141,31 +146,31 @@ export default defineComponent({
     showModal() {
       this.$emit('on-click', '')
     },
-    handleInput(data: any) {
+    handleInput(data: Input) {
       if (data.name === 'title') {
-        this.vidio.title = data.value
+        this.form.title = data.value
       } else if (data.name === 'description') {
-        this.vidio.description = data.value
+        this.form.description = data.value
       } else if (data.name === 'cover') {
-        this.vidio.cover = data.value
+        this.form.cover = data.value
       } else if (data.name === 'rating') {
-        this.vidio.rating = data.value
+        this.form.rating = data.value
       } else if (data.name === 'level') {
-        this.vidio.level = data.value
+        this.form.level = data.value
       } else {
-        this.vidio.price = data.value
+        this.form.price = data.value
       }
     },
     handleGetById() {
       this.fetchDetail(this.idVidio).then((res) => {
-        this.vidio = res.data
+        this.form = res.data
       })
     },
     closeModal() {
       this.$emit('on-click', '')
     },
     handleEdit() {
-      this.editVidio({ id: this.idVidio, body: this.vidio }).then((res) => {
+      this.editVidio({ id: this.idVidio, body: this.form }).then((res) => {
         console.log(res)
       })
     },

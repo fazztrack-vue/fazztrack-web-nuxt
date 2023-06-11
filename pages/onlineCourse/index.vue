@@ -207,7 +207,7 @@
       }),
     },
     mounted() {
-      this.fetchData();
+      this.fetchData({$axios: this.$axios});
     },
     methods: {
       ...mapActions({

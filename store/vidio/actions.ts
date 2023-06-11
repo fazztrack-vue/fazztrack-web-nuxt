@@ -1,11 +1,8 @@
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import { Commit } from 'vuex'
 import type { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { IVidioState } from './interface';
 
-
-
-const token = localStorage.getItem('auth._token.local')
 
 const actions = {
     getListVidios({ commit }: { commit: Commit }, { $axios }: { $axios: NuxtAxiosInstance }) {
@@ -22,15 +19,10 @@ const actions = {
             })
         })
     },
-    getVidioDetail({ commit }: { commit: Commit }, id: number) {
+    getVidioDetail({ commit }: { commit: Commit }, { $axios, id }: { $axios: NuxtAxiosInstance, id: number }) {
         commit('GET_DETAIL_VIDIO_PENDING')
         return new Promise((resolve, reject) => {
-            axios
-                .get(`https://fazz-track-sample-api.vercel.app/video/${id}`, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
+            $axios.get(`/video/${id}`)
                 .then((res: AxiosResponse) => {
                     resolve(res.data)
                     commit('GET_DETAIL_VIDIO_FULFILLED', res.data.data)
@@ -43,14 +35,9 @@ const actions = {
                 })
         })
     },
-    editVidio(_context: any, data: { id: number, body: IVidioState }) {
+    editVidio(_context: any, { id, body, $axios }: { id: number, body: IVidioState, $axios: NuxtAxiosInstance }) {
         return new Promise((resolve, reject) => {
-            axios
-                .put(`https://fazz-track-sample-api.vercel.app/video/${data.id}`, data.body, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
+            $axios.put(`/video/${id}`, body)
                 .then((res: AxiosResponse) => {
                     resolve(res.data)
 
@@ -62,14 +49,9 @@ const actions = {
                 })
         })
     },
-    postVidio(_context: any, body: IVidioState) {
+    postVidio(_context: any, { body, $axios }: { body: IVidioState, $axios: NuxtAxiosInstance }) {
         return new Promise((resolve, reject) => {
-            axios
-                .post(`https://fazz-track-sample-api.vercel.app/video`, body, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
+            $axios.post(`https://fazz-track-sample-api.vercel.app/video`, body)
                 .then((res: AxiosResponse) => {
                     resolve(res.data)
 
@@ -81,14 +63,9 @@ const actions = {
                 })
         })
     },
-    deleteVidio(_context: any, id: number) {
+    deleteVidio(_context: any, { id, $axios }: { id: number, $axios: NuxtAxiosInstance }) {
         return new Promise((resolve, reject) => {
-            axios
-                .delete(`https://fazz-track-sample-api.vercel.app/video/${id}`, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
+            $axios.delete(`https://fazz-track-sample-api.vercel.app/video/${id}`)
                 .then((res: AxiosResponse) => {
                     resolve(res.data)
 

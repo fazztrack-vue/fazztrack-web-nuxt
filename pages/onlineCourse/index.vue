@@ -243,7 +243,7 @@
         this.id = param
         this.modalDeleteStatus = !this.modalDeleteStatus;
       },
-      handleDelete(id: number) {
+      handleDelete(idVid: number) {
         Swal.fire({
           title: "Are you sure?",
           text: "vidio will be removed, are you sure?",
@@ -254,8 +254,8 @@
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            this.deleteVidio(id).then((_res: any) => {
-              this.fetchData();
+            this.deleteVidio({id:idVid, $axios : this.$axios }).then((_res: any) => {
+              this.fetchData({$axios: this.$axios});
             });
             Swal.fire("Delete Success!", "", "success");
           } else {

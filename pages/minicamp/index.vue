@@ -20,7 +20,7 @@
           <div v-if="listMinicamp.isError === true" class="col-start-2">
             <p class="bg-red-300 rounded-md py-3 text-center font-semibold">{{listMinicamp.errMessage}}</p>
           </div>
-          <div v-for="item in listMinicamp.data" :key="item.id">
+          <div v-for="item in listMinicamp.data.data" :key="item.id">
             <CardMinicamp v-if="listMinicamp.isLoading === false" :options="item" />
           </div>
       </main>
@@ -38,7 +38,6 @@
   import NavbarSection from '~/components/molecules/NavbarSection.vue';
   import CardMinicamp from '~/components/molecules/CardMinicamp.vue';
   import SkeletonMinicamp from '~/components/atoms/SkeletonMinicamp.vue';
-  // import IDataMinicamp from '~/interfaces/IMinicamp';
   import ToastSuccess from '~/components/atoms/ToastSuccess.vue';
   
   interface IOptions {
@@ -62,7 +61,7 @@
       SkeletonMinicamp
     },
     layout: 'NavFoot',
-    auth:false,
+    // auth:false,
     data() : Data {
         return{
           options:[
@@ -76,7 +75,6 @@
             value : 'Tidak Disalurkan',
             active: false},
         ],
-        // dataMinicamps : [] as IDataMinicamp[],
         isModal : false,
         isAlert : false
       }
@@ -89,29 +87,14 @@
       })
     },
     mounted(){
-      this.fetchDataMinicamp()
+      this.fetchDataMinicamp({$axios: this.$axios})
     },
     methods:{
       handleModal(): void{
         this.isModal = !this.isModal
       },
-      // handleConfirm(val : any){
-      //   if(val === 'cancel'){
-      //     this.handleModal()
-      //   }else{
-      //     this.handleModal()
-      //     this.insertData(val)
-      //   }
-      // },
       filterMinicamp(_data : any){
         Swal.fire('API tidak men-support filter', '', 'info')    
-        // if(data.value === 'Disalurkan'){
-        //   this.dataMinicamps = this.listDisalurkan
-        // }else if(data.value === 'Tidak Disalurkan'){
-        //   this.dataMinicamps = this.listTidakDisalurkan
-        // }else{
-        //   this.dataMinicamps = this.listMinicamp.data
-        // }
       },
       moveRoute(path : string){
         this.$router.push(path)

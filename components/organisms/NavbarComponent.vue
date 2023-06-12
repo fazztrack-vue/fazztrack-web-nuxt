@@ -9,7 +9,7 @@
           : 'container-class bg-white flex items-center'
       ">
       <div class="w-[20%]">
-        <div class="w-fit cursor-pointer" @click="moveRoute('/minicamp')">
+        <div class="w-fit cursor-pointer" @click="moveRoute('/about')">
             <Logo />
           </div>
       </div>
@@ -68,7 +68,7 @@
                     <a
                       rel="noopener noreferrer"
                       class="flex items-center font-bold whitespace-nowrap py-[4px]"
-                      @click="moveRoute('/')"
+                      @click="moveRoute('/minicamp')"
                       >Lihat Semua
                       <svg
                         data-v-cf1ec82f=""
@@ -166,8 +166,9 @@
                     Alumni
                   </p>
                   <section class="flex flex-col items-start gap-[6px]">
-                    <a
+                    <a 
                       class="flex items-center font-bold whitespace-nowrap py-[4px]"
+                      @click="moveRoute('/alumniStories')"
                       >Cerita Alumni</a
                     >
                   </section>

@@ -58,7 +58,7 @@
         },
         computed:{
             onInput:{
-                get(){
+                get(): any{
                     return this.inputValue
                 },
                 set(val: string){

@@ -7,6 +7,11 @@
       >
         <LoadingComponent />
       </div>
+      <div v-else-if="detailVidio.isError" class="h-[60vh] flex items-center">
+        <div>
+          {{ detailVidio.errMessage }}
+        </div>
+      </div>
       <form
         v-else
         action=""
@@ -89,16 +94,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2'
 import BtnPrimary from '~/components/atoms/BtnPrimary.vue'
 import LoadingComponent from '@/components/atoms/LoadingComponent.vue'
 import InputComponent from '@/components/atoms/InputComponent.vue'
 import LogoFazz from '~/components/atoms/LogoFazz.vue'
 
-
-interface Input{
-  name:string,
-  value:string
+interface Input {
+  name: string
+  value: string
 }
 
 interface IForm {
@@ -115,7 +119,7 @@ export default defineComponent({
     InputComponent,
     BtnPrimary,
     LoadingComponent,
-    LogoFazz
+    LogoFazz,
   },
   layout: 'NavFoot',
   props: {
@@ -142,6 +146,9 @@ export default defineComponent({
       detailVidio: 'vidio/getDetail',
     }),
   },
+  mounted() {
+    this.handleGetById()
+  },
   methods: {
     ...mapActions({
       fetchDetail: 'vidio/getVidioDetail',
@@ -154,22 +161,42 @@ export default defineComponent({
       this.form[data.name] = data.value
     },
     handleGetById() {
-      this.fetchDetail({id:this.idVidio, $axios: this.$axios}).then((res) => {
-        this.form = res.data
-      })
+      this.fetchDetail({ id: this.idVidio, $axios: this.$axios })
+        .then((res) => {
+          this.form = res.data
+        })
+        .catch((err) => {
+          Swal.fire(`${err}`, '', 'error')
+        })
     },
     closeModal() {
       this.$emit('on-click', '')
     },
     handleEdit() {
-      this.editVidio({ id: this.idVidio, body: this.form, $axios: this.$axios }).then((_res) => {
-          Swal.fire("Edit Success!", "", "success");
-          this.$router.push('/onlineCourse')
-      })
+      if (
+        this.form.title === '' ||
+        this.form.description === '' ||
+        this.form.cover === '' ||
+        this.form.rating === null ||
+        this.form.level === '' ||
+        this.form.price === null
+      ) {
+        Swal.fire("Field can't null", '', 'error')
+      } else {
+        this.editVidio({
+          id: this.idVidio,
+          body: this.form,
+          $axios: this.$axios,
+        })
+          .then((_res) => {
+            Swal.fire('Edit Success!', '', 'success')
+            this.$router.push('/onlineCourse')
+          })
+          .catch((_err) => {
+            Swal.fire(`Edit ${this.detailVidio.errMessage}`, '', 'error')
+          })
+      }
     },
-  },
-  mounted() {
-    this.handleGetById()
   },
 })
 </script>

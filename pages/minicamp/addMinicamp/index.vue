@@ -1,96 +1,100 @@
-<template >
-  <div  class="relative" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-500 z-40 bg-opacity-75 transition-opacity"></div>
-    <div class="fixed inset-0 z-50 overflow-y-auto my-20">
-      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"> 
-        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all py-5 px-3 sm:my-8 sm:w-full sm:max-w-lg">
-          <form class="w-full" @submit.prevent="handleSubmit">
-            <div class="w-full mb-4">
-                <InputModel
+<template lang="">
+  <div class="w-full flex justify-center">
+    <div class="container flex justify-center">
+      <form
+        class="w-full border-[1px] p-4 sm:p-12 lg:p-20 rounded-md my-12 max-w-2xl"
+        @submit.prevent="handleSubmit(form)"
+      >
+        <div class="w-full flex flex-col items-center">
+          <div>
+            <LogoFazz />
+          </div>
+          <p class="text-xl font-semibold mb-2">Tambah Data Minicamp</p>
+        </div>
+        <div class="w-full mb-4">
+                <InputModal
                     type="text"
                     label="Title"
                     name="title"
                     placeholder="Masukan title"
                     @on-change="handleInput"/>
-                <InputModel
+                <InputModal
                     type='text-area'
                     label='Description'
                     name='description'
                     placeholder='Masukan description'
                     @on-change="handleInput"/>
-                <InputModel
+                <InputModal
                     type="text"
                     label="Trainer Names"
                     name="trainer-name"
                     placeholder="Masukan trainer names"
                     @on-change="handleInput"/>   
-                <InputModel
+                <InputModal
                     type="url"
                     label="Picture"
                     name="trainer-picture"
                     placeholder="Masukan picture"
                     @on-change="handleInput"/> 
-                <InputModel
+                <InputModal
                     type="text"
                     label="Trainer Title"
                     name="trainer-title"
                     placeholder="Masukan trainer title"
                     @on-change="handleInput"/>   
-                <InputModel
-                    type="number"
+                <InputModal
+                    type="text"
                     label="Batch"
                     name="batch"
                     placeholder="Masukan batch"
                     @on-change="handleInput"/> 
-                <InputModel
+                <InputModal
                     type="text"
                     label="Location"
                     name="location"
                     placeholder="Masukan location"
                     @on-change="handleInput"/>
-                <InputModel
+                <InputModal
                     type="date"
                     label="Start Date"
                     name="start-date"
                     placeholder="Masukan start date"
                     @on-change="handleInput"/>  
-                <InputModel
+                <InputModal
                     type="date"
                     label="End Date"
                     name="end-date"
                     placeholder="Masukan end date"
                     @on-change="handleInput"/>  
-                <InputModel
+                <InputModal
                     type="text"
                     label="Is Work"
                     name="is-work"
                     placeholder="Masukan false or true"
                     @on-change="handleInput"/>
-                <InputModel
+                <InputModal
                     type="number"
                     label="Price"
                     name="price"
                     placeholder="Masukan price"
                     @on-change="handleInput"/> 
             </div>
-            <BtnPrimary size="btn-sm" title="save"/>
-          </form>
-          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-            <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" @click="handlecConfirm('cancel')">Cancel</button>
-          </div>
-        </div>
-      </div>
+        <BtnPrimary title="Tambah Minicamp" />
+      </form>
     </div>
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
+import { mapActions } from 'vuex'
 
-  import Swal from 'sweetalert2';
-  import InputModel from '../atoms/InputComponent.vue';
-  import BtnPrimary from '../atoms/BtnPrimary.vue';
-  
-  interface IDataPostMinicamp {
+import Swal from 'sweetalert2';
+import IDataMinicamp from '~/interfaces/IMinicamp';
+import BtnPrimary from '~/components/atoms/BtnPrimary.vue'
+import InputModal from '@/components/atoms/InputComponent.vue'
+import LogoFazz from '~/components/atoms/LogoFazz.vue';
+
+interface IDataPostMinicamp {
     created_at: string
     title: string
     description: string
@@ -105,18 +109,19 @@
     price: number
   }
 
-  interface Data {
-    dataMinicamp: IDataPostMinicamp
-  }
+interface Data {
+  form: IDataPostMinicamp
+}
 
-  export default defineComponent({
-      components :{
-        InputModel,
-        BtnPrimary
-      },
-      data() : Data{
+export default defineComponent({
+  components: {
+    InputModal,
+    BtnPrimary,
+    LogoFazz
+  },
+  data() : Data{
         return{
-          dataMinicamp: {
+          form: {
             created_at: '',
             title: '',
             description: '',
@@ -132,72 +137,76 @@
           }
         }
       },
-      methods:{
-        handlecConfirm(val : string){
-          this.$emit('on-confirm', val)
-        },
-        handleInput(val : any){
-          this.dataMinicamp.created_at = new Date().toISOString()
+  methods: {
+    handleInput(val : any){
+          this.form.created_at = new Date().toISOString()
           if(val.name === 'title'){
-            this.dataMinicamp.title = val.value
+            this.form.title = val.value
           }
           if(val.name === 'description'){
-            this.dataMinicamp.description = val.value
+            this.form.description = val.value
           }
           if(val.name === 'trainer-name'){
-            this.dataMinicamp.trainerName = val.value
+            this.form.trainerName = val.value
           }
           if(val.name === 'trainer-picture'){
-            this.dataMinicamp.trainerPicture = val.value
+            this.form.trainerPicture = val.value
           }
           if(val.name === 'trainer-title'){
-            this.dataMinicamp.trainerTitle = val.value
+            this.form.trainerTitle = val.value
           }
           if(val.name === 'batch'){
-            this.dataMinicamp.batch = val.value
+            this.form.batch = val.value
           }
           if(val.name === 'location'){
-            this.dataMinicamp.location = val.value
+            this.form.location = val.value
           }
           if(val.name === 'start-date'){
-            this.dataMinicamp.startDate = val.value
+            this.form.startDate = val.value
           }
           if(val.name === 'end-date'){
-            this.dataMinicamp.endDate = val.value
+            this.form.endDate = val.value
           }
           if(val.name === 'is-work'){
             if(val.value === 'false'){
-            this.dataMinicamp.isWork = false
+            this.form.isWork = false
             }else{
-              this.dataMinicamp.isWork = Boolean(val.value)
+              this.form.isWork = Boolean(val.value)
             }
           }
           if(val.name === 'price'){
-            this.dataMinicamp.price = val.value
+            this.form.price = val.value
           }
-        },
-        handleSubmit(){
-          if(
-          this.dataMinicamp.created_at === '' ||
-          this.dataMinicamp.title === '' ||
-          this.dataMinicamp.description === '' ||
-          this.dataMinicamp.trainerName === '' ||
-          this.dataMinicamp.trainerPicture === '' ||
-          this.dataMinicamp.trainerTitle === ''||
-          this.dataMinicamp.batch === '' ||
-          this.dataMinicamp.startDate === '' ||
-          this.dataMinicamp.endDate === '' ||
-          this.dataMinicamp.price === 0 ||
-          this.dataMinicamp.location === '' ||
-          typeof this.dataMinicamp.isWork !== 'boolean'  
-          ){
-            Swal.fire('Please fill all the input', '', 'info')
-          }
-          this.$emit('on-confirm', this.dataMinicamp)
-        }
+    },
+    handleSubmit(data : IDataMinicamp){
+      if(
+      this.form.created_at === '' ||
+      this.form.title === '' ||
+      this.form.description === '' ||
+      this.form.trainerName === '' ||
+      this.form.trainerPicture === '' ||
+      this.form.trainerTitle === ''||
+      this.form.batch === '' ||
+      this.form.startDate === '' ||
+      this.form.endDate === '' ||
+      this.form.price === 0 ||
+      this.form.location === '' ||
+      typeof this.form.isWork !== 'boolean'  
+      ){
+        Swal.fire('Please fill all the input', '', 'info')
       }
+      this.insertDataMinicamp(data).then((_res : any) => {
+        Swal.fire('Success Insert', '' , 'success')
+        setTimeout(() => {
+          this.$router.push('/minicamp')
+        }, 2000);
+      }).catch((error : any) => {
+        Swal.fire('Insert Failed!', error.message, 'error')    
+      })
+    },
+    ...mapActions({
+      insertDataMinicamp : "minicamp/insertDataMinicamp"
     })
+  },
+})
 </script>
-<style lang="">
-  
-</style>

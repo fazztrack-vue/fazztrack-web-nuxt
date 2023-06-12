@@ -12,16 +12,15 @@
       </header>
       <NavbarSection :options="options" @on-selected="filterMinicamp" />
       <section>
-        <Modal v-if="isModal" @on-confirm="handleConfirm" />
         <div v-if="$auth.loggedIn && listMinicamp.isError === false"  class="container-class pt-10 mx-auto text-right">
-          <button class="border-2 rounded-md py-2 px-3 bg-primary-orange text-white tracking-wide border-primary-orange" @click="handleModal"><i class="fa-solid fa-circle-plus fa-2xl"></i></button>
+          <button class="border-2 rounded-md py-2 px-3 bg-primary-orange text-white tracking-wide border-primary-orange" @click="moveRoute('/minicamp/addMinicamp')"><i class="fa-solid fa-circle-plus fa-2xl"></i></button>
         </div>
         <main class="container-class py-10 mx-auto grid grid-cols-3 gap-8 z-10 items-stretch">
           <SkeletonMinicamp v-if="listMinicamp.isLoading === true" />
           <div v-if="listMinicamp.isError === true" class="col-start-2">
             <p class="bg-red-300 rounded-md py-3 text-center font-semibold">{{listMinicamp.errMessage}}</p>
           </div>
-          <div v-for="item in listMinicamp.data" :key="item.id">
+          <div v-for="item in listMinicamp.data.data" :key="item.id">
             <CardMinicamp v-if="listMinicamp.isLoading === false" :options="item" />
           </div>
       </main>
@@ -36,11 +35,9 @@
 
   import Swal from 'sweetalert2';
   import LogoText from '~/components/atoms/LogoText.vue';
-  import Modal from '~/components/molecules/AddMinicamp.vue'
   import NavbarSection from '~/components/molecules/NavbarSection.vue';
   import CardMinicamp from '~/components/molecules/CardMinicamp.vue';
   import SkeletonMinicamp from '~/components/atoms/SkeletonMinicamp.vue';
-  import IDataMinicamp from '~/interfaces/IMinicamp';
   import ToastSuccess from '~/components/atoms/ToastSuccess.vue';
   
   interface IOptions {
@@ -60,12 +57,11 @@
       LogoText,
       NavbarSection,
       CardMinicamp,
-      Modal,
       ToastSuccess,
       SkeletonMinicamp
     },
     layout: 'NavFoot',
-    auth:false,
+    // auth:false,
     data() : Data {
         return{
           options:[
@@ -79,7 +75,6 @@
             value : 'Tidak Disalurkan',
             active: false},
         ],
-        // dataMinicamps : [] as IDataMinicamp[],
         isModal : false,
         isAlert : false
       }
@@ -92,43 +87,20 @@
       })
     },
     mounted(){
-      this.fetchDataMinicamp()
+      this.fetchDataMinicamp({$axios: this.$axios})
     },
     methods:{
-      insertData(data : IDataMinicamp) {
-        this.insertDataMinicamp(data).then((_res : any) => {
-          this.isAlert = true
-          setTimeout(() => {
-            this.fetchDataMinicamp()
-          }, 2000);
-        }).catch((error : any) => {
-          Swal.fire('Delete Failed!', error.message, 'error')    
-        })
-      },
       handleModal(): void{
         this.isModal = !this.isModal
       },
-      handleConfirm(val : any){
-        if(val === 'cancel'){
-          this.handleModal()
-        }else{
-          this.handleModal()
-          this.insertData(val)
-        }
-      },
       filterMinicamp(_data : any){
         Swal.fire('API tidak men-support filter', '', 'info')    
-        // if(data.value === 'Disalurkan'){
-        //   this.dataMinicamps = this.listDisalurkan
-        // }else if(data.value === 'Tidak Disalurkan'){
-        //   this.dataMinicamps = this.listTidakDisalurkan
-        // }else{
-        //   this.dataMinicamps = this.listMinicamp.data
-        // }
+      },
+      moveRoute(path : string){
+        this.$router.push(path)
       },
       ...mapActions({
         fetchDataMinicamp : "minicamp/getListMinicamp",
-        insertDataMinicamp : "minicamp/insertDataMinicamp"
       })
     },
   })

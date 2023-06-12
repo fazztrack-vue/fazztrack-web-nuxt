@@ -9,7 +9,7 @@ export default Vue.extend({
   name: 'IndexPage',
   auth: false,
   mounted(){
-    this.$router.push('/minicamp')
+    this.$router.push('/about')
   },
 })
 </script>

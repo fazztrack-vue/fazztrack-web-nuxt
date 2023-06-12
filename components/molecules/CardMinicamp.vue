@@ -31,21 +31,15 @@
             <img class="w-5 mt-1" alt="right-arrow" src="../../assets/icon/right-arrow.svg" />
           </div>
         </div>
-        <Modal v-if="isModal === true" :id="id" @on-confirm="handleConfirm" />
   </section>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
   import Swal from 'sweetalert2'
   import { mapActions } from 'vuex'
-  import Modal from '../../components/molecules/EditMinicamp.vue'
-  import IDataMinicamp from '~/interfaces/IMinicamp'
   import currency from '~/helper/currency'
   
   export default defineComponent({
-    components:{
-      Modal
-    },
     props:{
       options :{
         type: Object,
@@ -55,7 +49,6 @@
     data(){
       return {
         id: 0,
-        isModal : false,
         price : this.options.price,
       }
     },
@@ -78,26 +71,7 @@
           }) 
       },
       handleModalEdit(id : number){
-        this.id = id
-        this.isModal = !this.isModal
-      },
-      editCourse(data : IDataMinicamp) {
-        this.editAction(data).then((_res : any)=>{
-          Swal.fire('Edit Success!', '', 'success')
-          setTimeout(() => {
-            window.location.reload()
-          }, 1500);
-        }).catch((err : any) => {
-          Swal.fire('Delete Failed!', err.message, 'error')    
-        })
-      },
-      handleConfirm(val : any){
-        if(val === 'cancel'){
-          this.handleModalEdit(0)
-        }else{
-          this.handleModalEdit(0)
-          this.editCourse(val)
-        }
+        this.$router.push(`/minicamp/${id}/edit`)
       },
       showAlertDelete(id : number){
         Swal.fire({

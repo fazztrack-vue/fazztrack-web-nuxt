@@ -95,7 +95,6 @@ import LoadingComponent from '@/components/atoms/LoadingComponent.vue'
 import InputComponent from '@/components/atoms/InputComponent.vue'
 import LogoFazz from '~/components/atoms/LogoFazz.vue'
 
-
 interface Input{
   name:string,
   value:string

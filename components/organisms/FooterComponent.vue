@@ -1,5 +1,5 @@
 <template>
-   <footer class="bg-white flex flex-col items-center gap-[24px] text-neutral-11 py-[32px] md:py-[56px]">
+   <footer class="px-2 bg-white flex flex-col items-center gap-[24px] text-neutral-11 py-[32px] md:py-[56px]">
     <section class="flex flex-col lg:flex-row justify-between container-class gap-[24px] md:gap-[28px]">
       <section class="flex flex-col items-start lg:max-w-[348px] gap-[16px]">
         <Logo />

@@ -29,6 +29,7 @@ export default {
       const response : AxiosResponse = await axios.get(`https://fazz-track-sample-api.vercel.app/minicamp/${id}`, config)    
       const payload = response.data
       commit("GET_DETAIL_MINICAMP_FULLFILLED" , payload)
+      return payload
     } catch (error: any) {
       const payload = error.message
       commit("GET_DETAIL_MINICAMP_REJECTED", payload)

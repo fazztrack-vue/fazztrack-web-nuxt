@@ -206,10 +206,7 @@
             class="dropdown-profile relative"
             @click="showDropdownProfile">
             <section>
-              <div
-                data-v-dd33f8c4=""
-                data-v-282fc1c4=""
-                class="flex items-center justify-center min-w-[44px] w-[44px] h-[44px] bg-slate-300 rounded-full cursor-pointer">
+              <div class="flex items-center justify-center min-w-[44px] w-[44px] h-[44px] bg-slate-300 rounded-full cursor-pointer">
               </div>
             </section>
             <nav
@@ -260,6 +257,9 @@
             </button>
           </section>
         </section>
+      </main>
+      <main class="block lg:hidden ml-auto cursor-pointer">
+        <i class="fa-solid fa-bars fa-xl fa-fade"></i>
       </main>
     </nav>
   </section>

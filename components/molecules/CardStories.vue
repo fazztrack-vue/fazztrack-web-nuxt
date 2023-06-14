@@ -1,10 +1,10 @@
 <template>
-  <div class="card mb-3">
-    <div class="border">
+  <div class="mb-7 w-full">
+    <div class="border w-[95%] sm:w-full">
       <img :src="item.urlImage" :alt="item.alt" class="w-full h-[200px]"  />
     </div>
-    <div class="py-3">
-      <h1 class="font-bold text-2xl mb-3">{{ item.title }}</h1>
+    <div class="py-3 px-2">
+      <h1 class="font-bold text-md sm:text-2xl mb-3">{{ item.title }}</h1>
       <p class="font-thin line-clamp-4 mb-5">{{ item.description }}</p>
       <div class="flex items-center gap-2">
         <div class="rounded-full overflow-hidden border w-10">

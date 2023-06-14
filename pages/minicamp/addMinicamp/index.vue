@@ -27,19 +27,19 @@
                 <InputModal
                     type="text"
                     label="Trainer Names"
-                    name="trainer-name"
+                    name="trainerName"
                     placeholder="Masukan trainer names"
                     @on-change="handleInput"/>   
                 <InputModal
                     type="url"
                     label="Picture"
-                    name="trainer-picture"
+                    name="trainerPicture"
                     placeholder="Masukan picture"
                     @on-change="handleInput"/> 
                 <InputModal
                     type="text"
                     label="Trainer Title"
-                    name="trainer-title"
+                    name="trainerTitle"
                     placeholder="Masukan trainer title"
                     @on-change="handleInput"/>   
                 <InputModal
@@ -57,13 +57,13 @@
                 <InputModal
                     type="date"
                     label="Start Date"
-                    name="start-date"
+                    name="startDate"
                     placeholder="Masukan start date"
                     @on-change="handleInput"/>  
                 <InputModal
                     type="date"
                     label="End Date"
-                    name="end-date"
+                    name="endDate"
                     placeholder="Masukan end date"
                     @on-change="handleInput"/>  
                 <InputModal
@@ -94,23 +94,12 @@ import BtnPrimary from '~/components/atoms/BtnPrimary.vue'
 import InputModal from '@/components/atoms/InputComponent.vue'
 import LogoFazz from '~/components/atoms/LogoFazz.vue';
 
-interface IDataPostMinicamp {
-    created_at: string
-    title: string
-    description: string
-    trainerName: string
-    trainerTitle: string
-    trainerPicture: string
-    batch: string,
-    location: string,
-    startDate: string,
-    endDate: string,
-    isWork: boolean,
-    price: number
-  }
+interface IForm {
+[key: string]: string | number | boolean
+}
 
 interface Data {
-  form: IDataPostMinicamp
+  form: IForm
 }
 
 export default defineComponent({
@@ -138,45 +127,17 @@ export default defineComponent({
         }
       },
   methods: {
-    handleInput(val : any){
-          this.form.created_at = new Date().toISOString()
-          if(val.name === 'title'){
-            this.form.title = val.value
-          }
-          if(val.name === 'description'){
-            this.form.description = val.value
-          }
-          if(val.name === 'trainer-name'){
-            this.form.trainerName = val.value
-          }
-          if(val.name === 'trainer-picture'){
-            this.form.trainerPicture = val.value
-          }
-          if(val.name === 'trainer-title'){
-            this.form.trainerTitle = val.value
-          }
-          if(val.name === 'batch'){
-            this.form.batch = val.value
-          }
-          if(val.name === 'location'){
-            this.form.location = val.value
-          }
-          if(val.name === 'start-date'){
-            this.form.startDate = val.value
-          }
-          if(val.name === 'end-date'){
-            this.form.endDate = val.value
-          }
-          if(val.name === 'is-work'){
-            if(val.value === 'false'){
-            this.form.isWork = false
-            }else{
-              this.form.isWork = Boolean(val.value)
-            }
-          }
-          if(val.name === 'price'){
-            this.form.price = val.value
-          }
+    handleInput(data : any){
+      this.form.created_at = new Date().toISOString()
+      if(data.name === 'is-work'){
+        if(data.value === 'false'){
+        this.form.isWork = false
+        }else{
+          this.form.isWork = Boolean(data.value)
+        }
+      }else{
+        this.form[data.name] = data.value
+      }
     },
     handleSubmit(data : IDataMinicamp){
       if(
@@ -195,7 +156,7 @@ export default defineComponent({
       ){
         Swal.fire('Please fill all the input', '', 'info')
       }
-      this.insertDataMinicamp(data).then((_res : any) => {
+      this.insertDataMinicamp({$axios: this.$axios, data}).then((_res : any) => {
         Swal.fire('Success Insert', '' , 'success')
         setTimeout(() => {
           this.$router.push('/minicamp')

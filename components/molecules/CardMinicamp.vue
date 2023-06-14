@@ -1,5 +1,5 @@
 <template lang="">
-  <section class="card border rounded-md overflow-hidden w-full">
+  <section class="card border rounded-md overflow-hidden sm:w-full">
         <div class="relative w-full h-[200px]" >
           <img :src="options.trainerPicture" alt="Fazztrack image" draggable="false" class="w-full cover h-[100%]" />
           <div v-if="options.isWork === true" class='absolute top-2 left-2 border-2 rounded-md p-1 bg-[#fef3ec] border-primary-orange'>
@@ -11,7 +11,7 @@
           </div>
         </div>    
         <div class="p-4 flex flex-col">
-          <h1 class="title text-xl font-bold">{{options.title}}</h1>
+          <h1 class="title text-lg md:text-xl font-bold">{{options.title}}</h1>
           <section class="flex flex-1 items-center gap-2 my-2">
             <img class="w-5" alt="calendar-logo" src="../../assets/icon/calendar.svg" />
             <p>{{options.startDate}} - {{options.endDate}}</p>
@@ -55,13 +55,12 @@
     methods: {
       ...mapActions({
         deleteAction : "minicamp/deleteDataMinicamp",
-        editAction : "minicamp/updateDataMinicamp"
       }),
       convertCurrency(val:number){
         return currency(val)
       },
       deleteCourse(id : number){
-          this.deleteAction(id).then((_resolve : any) => {
+          this.deleteAction({$axios: this.$axios,id}).then((_resolve : any) => {
             Swal.fire('Delete Success!', '', 'success')
             setTimeout(() => {
               window.location.reload()

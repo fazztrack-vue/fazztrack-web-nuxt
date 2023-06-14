@@ -1,12 +1,7 @@
 import { Commit } from 'vuex';
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import type { NuxtAxiosInstance } from "@nuxtjs/axios";
 import IDataMinicamp from "~/interfaces/IMinicamp";
-
-const tempToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImNyZWF0ZWRfYXQiOiIyMDIzLTA1LTI2VDA1OjU4OjI0LjI0ODI1KzAwOjAwIiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJGRaeXJuYUQyS0lrbm5zZ2p4RnRkb082a2p5SHYzSXo1ZmNFMjZKM3huNC9yOVJ5S1prTkRXIiwiaWF0IjoxNjg1MTA0MzY2fQ.s8cgoCIfngy75U-VzF-SIP52u04qZ33b7myhpcwyUHI'
-const config = {
-  headers: { Authorization:  tempToken }
-};
 
 export default {
   getListMinicamp({commit} :{commit: Commit}, {$axios}: {$axios : NuxtAxiosInstance}){
@@ -23,20 +18,23 @@ export default {
       })
     })
   },
-  async getDetailMinicamp({commit} :{commit: Commit}, id : number){
+  getDetailMinicamp({commit} :{commit: Commit}, { $axios, id }: { $axios: NuxtAxiosInstance, id: number }){
     commit("GET_DETAIL_MINICAMP_PENDING");
-    try {
-      const response : AxiosResponse = await axios.get(`https://fazz-track-sample-api.vercel.app/minicamp/${id}`, config)    
-      const payload = response.data
-      commit("GET_DETAIL_MINICAMP_FULLFILLED" , payload)
-    } catch (error: any) {
-      const payload = error.message
-      commit("GET_DETAIL_MINICAMP_REJECTED", payload)
-    }
+    return new Promise((resolve, reject) => {
+      $axios.get(`/minicamp/${id}`).then((res : AxiosResponse) => {
+        resolve(res.data)
+        commit("GET_DETAIL_MINICAMP_FULLFILLED" , res.data)
+      }).catch((err : unknown) => {
+        if(err instanceof Error){
+          reject(err.message)
+          commit("GET_DETAIL_MINICAMP_REJECTED", err.message)
+        }
+      })
+    })
   },
-  insertDataMinicamp(_:any, data : IDataMinicamp){
+  insertDataMinicamp(_:any, {$axios, data} : { $axios: NuxtAxiosInstance, data: IDataMinicamp }){
     return new Promise((resolve, reject)=>{
-       axios.post('https://fazz-track-sample-api.vercel.app/minicamp',data, config).
+       $axios.post('/minicamp',data).
        then((res) => {
         resolve(res.data)
        })
@@ -45,9 +43,9 @@ export default {
        })
     })
   },
-  updateDataMinicamp(_context:any, data : IDataMinicamp){
+  updateDataMinicamp(_context:any,{ $axios, data }: { $axios: NuxtAxiosInstance, data: IDataMinicamp }){
     return new Promise((resolve, reject)=>{
-       axios.put(`https://fazz-track-sample-api.vercel.app/minicamp/${data.id}`,data, config).
+        $axios.put(`/minicamp/${data.id}`,data).
        then((res) => {
         resolve(res.data)
        })
@@ -56,9 +54,9 @@ export default {
        })
     })
   },
-  deleteDataMinicamp(_context:any, id : number){
+  deleteDataMinicamp(_context:any, { $axios, id }: { $axios: NuxtAxiosInstance, id: number }){
     return new Promise((resolve, reject)=>{
-      axios.delete(`https://fazz-track-sample-api.vercel.app/minicamp/${id}`, config).
+      $axios.delete(`/minicamp/${id}`).
       then((res) => {
        resolve(res.data)
       })

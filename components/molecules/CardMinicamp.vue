@@ -55,13 +55,12 @@
     methods: {
       ...mapActions({
         deleteAction : "minicamp/deleteDataMinicamp",
-        editAction : "minicamp/updateDataMinicamp"
       }),
       convertCurrency(val:number){
         return currency(val)
       },
       deleteCourse(id : number){
-          this.deleteAction(id).then((_resolve : any) => {
+          this.deleteAction({$axios: this.$axios,id}).then((_resolve : any) => {
             Swal.fire('Delete Success!', '', 'success')
             setTimeout(() => {
               window.location.reload()

@@ -37,21 +37,21 @@
                     type="text"
                     :default-value="form.trainerName"
                     label="Trainer Names"
-                    name="trainer-name"
+                    name="trainerName"
                     placeholder="Masukan trainer names"
                     @on-change="handleInput"/>   
                 <InputComponent
                     type="url"
                     label="Picture"
                     :default-value="form.trainerPicture"
-                    name="trainer-picture"
+                    name="trainerPicture"
                     placeholder="Masukan picture"
                     @on-change="handleInput"/> 
                 <InputComponent
                     type="text"
                     label="Trainer Title"
                     :default-value="form.trainerTitle"
-                    name="trainer-title"
+                    name="trainerTitle"
                     placeholder="Masukan trainer title"
                     @on-change="handleInput"/>   
                 <InputComponent
@@ -72,14 +72,14 @@
                     type="date"
                     :default-value="form.startDate"
                     label="Start Date"
-                    name="start-date"
+                    name="startDate"
                     placeholder="Masukan start date"
                     @on-change="handleInput"/>  
                 <InputComponent
                     type="date"
                     :default-value="form.endDate"
                     label="End Date"
-                    name="end-date"
+                    name="endDate"
                     placeholder="Masukan end date"
                     @on-change="handleInput"/>  
                 <InputComponent
@@ -113,9 +113,13 @@ import InputComponent from '@/components/atoms/InputComponent.vue'
 import LogoFazz from '~/components/atoms/LogoFazz.vue';
 import IDataMinicamp from '~/interfaces/IMinicamp';
 
+interface IForm {
+  [key: string]: string | number | boolean
+}
+
 interface Data {
     id : number
-    form: IDataMinicamp
+    form: IForm
   }
 
 export default defineComponent({
@@ -154,45 +158,17 @@ export default defineComponent({
     this.getDetail(this.id)
   },
   methods: {
-    handleInput(val : any){
-          this.form.created_at = new Date().toISOString()
-          if(val.name === 'title'){
-            this.form.title = val.value
-          }
-          if(val.name === 'description'){
-            this.form.description = val.value
-          }
-          if(val.name === 'trainer-name'){
-            this.form.trainerName = val.value
-          }
-          if(val.name === 'trainer-picture'){
-            this.form.trainerPicture = val.value
-          }
-          if(val.name === 'trainer-title'){
-            this.form.trainerTitle = val.value
-          }
-          if(val.name === 'batch'){
-            this.form.batch = val.value
-          }
-          if(val.name === 'location'){
-            this.form.location = val.value
-          }
-          if(val.name === 'start-date'){
-            this.form.startDate = val.value
-          }
-          if(val.name === 'end-date'){
-            this.form.endDate = val.value
-          }
-          if(val.name === 'is-work'){
-            if(val.value === 'false'){
-              this.form.isWork = false
-            }else{
-              this.form.isWork = Boolean(val.value)
-            }
-          }
-          if(val.name === 'price'){
-            this.form.price = val.value
-          }
+    handleInput(data : any){
+      this.form.created_at = new Date().toISOString()
+      if(data.name === 'is-work'){
+        if(data.value === 'false'){
+        this.form.isWork = false
+        }else{
+          this.form.isWork = Boolean(data.value)
+        }
+      }else{
+        this.form[data.name] = data.value
+      }
     },
     handleSubmit(){
           if(
@@ -214,17 +190,17 @@ export default defineComponent({
           this.$emit('on-confirm', this.form)
     },
     async getDetail(id : number){
-      await this.getDetailMinicamp(id)
+      await this.getDetailMinicamp({$axios:this.$axios, id})
       this.form = this.detailMinicamp.data.data
     },
     editCourse(data : IDataMinicamp) {
-        this.editAction(data).then((_res : any)=>{
+        this.editAction({$axios: this.$axios, data}).then((_res : any)=>{
           Swal.fire('Edit Success!', '', 'success')
           setTimeout(() => {
             this.$router.push('/minicamp')
           }, 1500);
         }).catch((err : any) => {
-          Swal.fire('Delete Failed!', err.message, 'error')    
+          Swal.fire('Edit Failed!', err.message, 'error')    
         })
       },
     ...mapActions({

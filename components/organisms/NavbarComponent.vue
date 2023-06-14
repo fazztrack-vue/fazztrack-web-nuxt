@@ -268,13 +268,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import '~/style/global.css'
+import Swal from 'sweetalert2';
 import { mapGetters, mapActions } from "vuex";
 import Logo from "../atoms/LogoFazz.vue";
 import ArrowUp from "../atoms/ArrowUp.vue";
 import ArrowDown from "../atoms/ArrowDown.vue";
 import IUser from "~/interfaces/IUser";
-
-const token : any = localStorage.getItem("auth._token.local");
 
 interface Data {
   isOpenNav1: boolean;
@@ -321,8 +320,8 @@ export default defineComponent({
     }),
   },
   mounted() {
-    if(token !== 'false'){
-      this.getDataUser(token);
+    if(this.$auth.loggedIn){
+      this.getDataUser();
     }
   },
   methods: {
@@ -366,10 +365,11 @@ export default defineComponent({
     moveRoute(path: string) {
       this.$router.push(path);
     },
-    async getDataUser(token: string) {
-      await this.fetchDataProfile(token);
-      this.dataUser = this.dataProfile.data;
-      this.nameUser = this.dataUser.email.split("@")[0];
+    getDataUser() {
+      this.fetchDataProfile({$axios : this.$axios}).then((_res) => {
+        this.dataUser = this.dataProfile.data;
+        this.nameUser = this.dataUser.email.split("@")[0];
+      }).catch((_err) => Swal.fire('Error GET Profile', 'Internal Server Error' , 'error'));
     },
   },
 })
